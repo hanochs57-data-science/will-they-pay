@@ -77,7 +77,7 @@ Express stores the prediction details in MongoDB.
 The prediction is displayed to the user.
 Installation
 Clone the Repository
-git clone https://github.com/your-username/Loan-Default-Prediction.git
+git clone https://github.com/your-username/will-they-pay.git
 
 cd Loan-Default-Prediction
 Build the Docker Containers
