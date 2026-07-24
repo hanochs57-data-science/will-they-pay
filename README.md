@@ -33,40 +33,8 @@ MongoDB
 DevOps
 Docker
 Docker Compose
-Project Architecture
-                React Frontend
-                       │
-                       ▼
-                Express Server
-                       │
-         ┌─────────────┴─────────────┐
-         ▼                           ▼
-   FastAPI ML API               MongoDB
-         │
-         ▼
-  Loan Default Prediction
-Project Structure
-Loan-Default-Prediction/
-│
-├── frontend/
-│   ├── src/
-│   ├── public/
-│   ├── Dockerfile
-│   └── package.json
-│
-├── express-server/
-│   ├── server.js
-│   ├── package.json
-│   └── Dockerfile
-│
-├── fastapi/
-│   ├── app.py
-│   ├── model.pkl
-│   ├── requirements.txt
-│   └── Dockerfile
-│
-├── docker-compose.yml
-└── README.md
+
+
 Workflow
 User enters loan applicant information.
 React sends the data to the Express server.
