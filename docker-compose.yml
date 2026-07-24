@@ -1,0 +1,54 @@
+services:
+  frontend:
+    build: ./frontend
+    ports:
+     - "5173:5173"
+    depends_on:
+      - express
+
+  express:
+    build: ./express-server
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - fastapi
+
+  fastapi:
+    build: ./fastapi
+    ports:
+      - "8000:8000"
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  airflow-init:
+    image: apache/airflow:3.3.0
+    command: db migrated
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+
+  airflow-webserver:
+    image: apache/airflow:3.3.0
+    command: webserver
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+    depends_on:
+      - airflow-scheduler
+
+  airflow-scheduler:
+    image: apache/airflow:3.3.0
+    command: scheduler
+    volumes:
+      - ./airflow/dags:/opt/airflow/dags
+
+volumes:
+  mongo_data:
